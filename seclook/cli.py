@@ -68,7 +68,7 @@ def main(service, value, export):
     elif service.lower() == "abuseipdb":
         result = abuseipdb_lookup.search(value)
     elif service.lower() == "greynoise":
-        result = abuseipdb_lookup.search(value)
+        result = greynoise_lookup.search(value)
     else:
         raise click.UsageError("Unknown service.")
 
