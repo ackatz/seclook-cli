@@ -1,9 +1,9 @@
-# .github/workflows/ci-cd.yml
 name: Release
+
 on:
-  pull_request_target:
-    types:
-      - closed
+   workflow_run:
+     workflows: ["Run tests"]
+     types: [completed]
 
 jobs:
   pypi-publish:
