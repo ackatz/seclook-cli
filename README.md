@@ -8,7 +8,7 @@
 ## Installation
 
 1. `pip install seclook`
-2. Copy `config.ini.sample` from this directory and place it in `~/.seclook/config.ini`
+2. Copy [config.ini.sample](https://github.com/ackatz/seclook/blob/main/config.ini.sample) from this directory and place it in `~/.seclook/config.ini`
 3. Open `~/.seclook/config.ini` and add in your own API keys for the services you want to use
 
 ## Usage
