@@ -45,6 +45,13 @@ def test_abuseipdb_missing_value():
     assert "Error: Missing value argument for service 'abuseipdb'." in result.output
 
 
+def test_greynoise_missing_value():
+    runner = CliRunner()
+    result = runner.invoke(main, ["greynoise"])
+    assert result.exit_code != 0
+    assert "Error: Missing value argument for service 'greynoise'." in result.output
+
+
 def test_unknown_service():
     runner = CliRunner()
     result = runner.invoke(main, ["unknown", "value"])
@@ -73,4 +80,10 @@ def test_emailrep_valid_value():
 def test_abuseipdb_valid_value():
     runner = CliRunner()
     result = runner.invoke(main, ["abuseipdb", "1.1.1.1"])
+    assert result.exit_code == 0
+
+
+def test_greynoise_valid_value():
+    runner = CliRunner()
+    result = runner.invoke(main, ["greynoise", "1.1.1.1"])
     assert result.exit_code == 0
