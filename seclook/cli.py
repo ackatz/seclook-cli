@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
 import click
-from seclook.lookups import shodan_lookup, virustotal_lookup
-from seclook.lookups import emailrep_lookup
+from seclook.lookups import shodan_lookup, virustotal_lookup, emailrep_lookup
 import json
 import os
 
