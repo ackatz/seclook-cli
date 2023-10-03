@@ -1,14 +1,15 @@
-[![Release](https://github.com/ackatz/seclook/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/ackatz/seclook/actions/workflows/ci-cd.yml)
+[![Tests](https://github.com/ackatz/seclook/actions/workflows/ci.yml/badge.svg)](https://github.com/ackatz/seclook/actions/workflows/ci.yml)
+[![Release](https://github.com/ackatz/seclook/actions/workflows/cd.yml/badge.svg)](https://github.com/ackatz/seclook/actions/workflows/cd.yml)
 
 # seclook
 
-`seclook` is a security lookup CLI tool that allows you to query various security services on the fly. You can look up information using commands like `seclook [service] [value]`, where service can be `virustotal`, `shodan`, `emailrep` etc., and value is the information you're querying for.
+`seclook` is a security lookup CLI tool that allows you to query various security services on the fly. You can look up information using commands like `seclook [service] [value]`, where the service can be `virustotal`, `shodan`, `emailrep`, and so on. The value is the information you're querying for and varies by service.
 
 ## Installation
 
 1. `pip install seclook`
-2. Copy `config.ini.sample` to `~/.seclook/config.ini`.
-3. Edit `~/.seclook/config.ini` with your own API keys.
+2. Copy `config.ini.sample` from this directory and place it in `~/.seclook/config.ini`
+3. Open `~/.seclook/config.ini` and add in your own API keys for the services you want to use
 
 ## Usage
 
@@ -41,12 +42,18 @@ seclook virustotal 1.1.1.1 | grep malicious
 `--export` – Use this flag to export the results to a JSON file on your Desktop.
 
 ## Supported services
+
 - [x] [VirusTotal](https://virustotal.com/)
 - [x] [Shodan](https://www.shodan.io/)
 - [x] [Emailrep](https://emailrep.io/)
-- [ ] [AlienVault OTX](https://otx.alienvault.com/) (Planned)
-- [ ] [AbuseIPDB](https://www.abuseipdb.com/) (Planned)
-- [ ] [GreyNoise](https://www.greynoise.io/) (Planned)
+- [x] [AbuseIPDB](https://www.abuseipdb.com/)
+- [x] [GreyNoise](https://www.greynoise.io/)
+
+You can also view supported services by passing `list` as the service name:
+
+```bash 
+seclook list
+```
 
 ## Contributing
 
