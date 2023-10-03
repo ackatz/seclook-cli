@@ -1,3 +1,5 @@
+[![Release](https://github.com/ackatz/seclook/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/ackatz/seclook/actions/workflows/ci-cd.yml)
+
 # seclook
 
 `seclook` is a security lookup CLI tool that allows you to query various security services on the fly. You can look up information using commands like `seclook [service] [value]`, where service can be `virustotal`, `shodan`, `emailrep` etc., and value is the information you're querying for.
