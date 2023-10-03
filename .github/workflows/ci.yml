@@ -18,6 +18,23 @@ jobs:
       with:
         python-version: 3.11
 
+    - name: Create config.ini
+      run: |
+        echo "[shodan]" > config.ini
+        echo "api_key = ${{ secrets.shodan_api_key }}" >> config.ini
+        
+        echo "[virustotal]" >> config.ini
+        echo "api_key = ${{ secrets.virustotal_api_key }}" >> config.ini
+        
+        echo "[emailrep]" >> config.ini
+        echo "api_key = ${{ secrets.emailrep_api_key }}" >> config.ini
+        
+        echo "[abuseipdb]" >> config.ini
+        echo "api_key = ${{ secrets.abuseipdb_api_key }}" >> config.ini
+        
+        echo "[greynoise]" >> config.ini
+        echo "api_key = ${{ secrets.greynoise_api_key }}" >> config.ini
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
