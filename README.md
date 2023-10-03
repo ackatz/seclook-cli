@@ -1,6 +1,6 @@
 # seclook
 
-`seclook` is a security lookup CLI tool that allows you to query various security services with ease. You can look up information using commands like `seclook [service] [value]`, where service can be `virustotal`, `shodan`, `emailrep` etc., and value is the information you're querying for.
+`seclook` is a security lookup CLI tool that allows you to query various security services on the fly. You can look up information using commands like `seclook [service] [value]`, where service can be `virustotal`, `shodan`, `emailrep` etc., and value is the information you're querying for.
 
 ## Installation
 
