@@ -38,6 +38,14 @@ seclook virustotal 1.1.1.1 | grep malicious
 
 `--export` – Use this flag to export the results to a JSON file on your Desktop.
 
+## Supported services
+- [x] [VirusTotal](https://virustotal.com/)
+- [x] [Shodan](https://www.shodan.io/)
+- [x] [Emailrep](https://emailrep.io/)
+- [ ] [AlienVault OTX](https://otx.alienvault.com/) (Planned)
+- [ ] [AbuseIPDB](https://www.abuseipdb.com/) (Planned)
+- [ ] [GreyNoise](https://www.greynoise.io/) (Planned)
+
 ## Contributing
 
 If you'd like to contribute to seclook, please feel free to fork the repository, create a feature branch, and then submit a Pull Request.
