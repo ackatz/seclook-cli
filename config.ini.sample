@@ -1,8 +1,14 @@
+[abuseipdb]
+api_key =
+
+[emailrep]
+api_key =
+
+[greynoise]
+api_key =
+
 [shodan]
 api_key =
 
 [virustotal]
-api_key =
-
-[emailrep]
 api_key =
