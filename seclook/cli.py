@@ -1,21 +1,63 @@
 #!/usr/bin/env python3
 
 import click
-from seclook.lookups import shodan_lookup, virustotal_lookup, emailrep_lookup
+from seclook.lookups import (
+    shodan_lookup,
+    virustotal_lookup,
+    emailrep_lookup,
+    abuseipdb_lookup,
+    greynoise_lookup,
+)
 import json
 import os
 
 
 @click.command()
-@click.argument("service")
-@click.argument("value")
+@click.argument("service", required=False)
+@click.argument("value", required=False)
 @click.option(
     "--export", is_flag=True, help="Export results to a JSON file on the desktop"
 )
 def main(service, value, export):
-    """Perform lookups from various security services"""
+    """Perform lookups from various security services
 
-    result = None
+    - Use `seclook [service] [value]` to perform a lookup.
+
+    - Use `seclook list` to see a list of available services.
+    """
+
+    if not service:
+        raise click.UsageError("Missing service argument.")
+
+    # If service doesn't exist, print an error message
+    if service.lower() not in [
+        "list",
+        "shodan",
+        "virustotal",
+        "emailrep",
+        "abuseipdb",
+        "greynoise",
+    ]:
+        raise click.UsageError(f"The service '{service}' is not available in seclook.")
+
+    # Special service name to list available services
+    if service.lower() == "list":
+        services = [
+            "- Shodan",
+            "- VirusTotal",
+            "- Emailrep",
+            "- AbuseIPDB",
+            "- GreyNoise",
+        ]
+        click.echo("Available services:")
+        for service in services:
+            click.echo(service)
+        click.echo("Run 'seclook [service] [value]' to perform a lookup.")
+        return
+
+    # If value is not provided for a service lookup, print an error message
+    if not value:
+        raise click.UsageError(f"Missing value argument for service '{service}'.")
 
     if service.lower() == "shodan":
         result = shodan_lookup.search(value)
@@ -23,9 +65,12 @@ def main(service, value, export):
         result = virustotal_lookup.search(value)
     elif service.lower() == "emailrep":
         result = emailrep_lookup.search(value)
+    elif service.lower() == "abuseipdb":
+        result = abuseipdb_lookup.search(value)
+    elif service.lower() == "greynoise":
+        result = abuseipdb_lookup.search(value)
     else:
-        click.echo("Unknown service")
-        return
+        raise click.UsageError("Unknown service.")
 
     # If export flag is set, save to a JSON file on the desktop
     if export:

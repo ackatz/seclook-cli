@@ -6,12 +6,12 @@ config_path = find_config()
 config = configparser.ConfigParser()
 config.read(config_path)
 
-base_url = "https://www.virustotal.com/api/v3/search"
+base_url = "https://api.abuseipdb.com/api/v2/check"
 
 
 def search(value):
-    virustotal_api_key = config["virustotal"]["api_key"]
-    headers = {"x-apikey": virustotal_api_key}
-    params = {"query": value}
+    abuseipdb_api_key = config["abuseipdb"]["api_key"]
+    headers = {"Accept": "application/json", "Key": abuseipdb_api_key}
+    params = {"ipAddress": value, "maxAgeInDays": 90, "verbose": True}
     response = requests.get(base_url, headers=headers, params=params)
     return response.json()
