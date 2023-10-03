@@ -55,6 +55,14 @@ You can also view supported services by passing `list` as the service name:
 seclook list
 ```
 
+## Upgrading
+
+To upgrade seclook to the latest version:
+
+```bash
+pip install --upgrade seclook
+```
+
 ## Contributing
 
 If you'd like to contribute to seclook, please feel free to fork the repository, create a feature branch, and then submit a Pull Request.
