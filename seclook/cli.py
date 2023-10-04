@@ -15,9 +15,7 @@ import os
 @click.command()
 @click.argument("service", required=False)
 @click.argument("value", required=False)
-@click.option(
-    "--export", is_flag=True, help="Export results to a JSON file on the desktop"
-)
+@click.option("--export", is_flag=True, help="Export JSON to Desktop")
 def main(service, value, export):
     """Perform lookups from various security services
 
@@ -38,7 +36,7 @@ def main(service, value, export):
         "abuseipdb",
         "greynoise",
     ]:
-        raise click.UsageError(f"The service '{service}' is not available in seclook.")
+        raise click.UsageError(f"'{service}' is not available in seclook.")
 
     # Special service name to list available services
     if service.lower() == "list":
@@ -57,7 +55,7 @@ def main(service, value, export):
 
     # If value is not provided for a service lookup, print an error message
     if not value:
-        raise click.UsageError(f"Missing value argument for service '{service}'.")
+        raise click.UsageError(f"Missing value argument for '{service}'.")
 
     if service.lower() == "shodan":
         result = shodan_lookup.search(value)
