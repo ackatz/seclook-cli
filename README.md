@@ -3,13 +3,17 @@
 
 # seclook
 
-`seclook` is a security lookup CLI tool that allows you to query various security services on the fly. You can look up information using commands like `seclook [service] [value]`, where the service can be `virustotal`, `shodan`, `emailrep`, and so on. The value is the information you're querying for and varies by service.
+`seclook` is a security lookup CLI tool that allows you to query various security services on the fly. It is essentially a wrapper over the `requests` library that removes the need to manually search within Web UIs or write your own requests in Postman or cURL to query these services.
+
+You can look up information using commands like `seclook [service] [value]`, where the service can be `virustotal`, `shodan`, `emailrep`, and so on. The value is the information you're querying for and varies by service.
 
 ## Installation
 
 1. `pip install seclook`
 2. Copy [config.ini.sample](https://github.com/ackatz/seclook/blob/main/config.ini.sample) from this directory and place it in `~/.seclook/config.ini`
-3. Open `~/.seclook/config.ini` and add in your own API keys for the services you want to use
+3. Open `~/.seclook/config.ini` and add in your own API keys for the services you want to use. 
+
+> Some services (e.g., GreyNoise, ThreatFox) _don't require API keys_, but may be rate-limited more quickly without one or have other limitations.
 
 ## Usage
 

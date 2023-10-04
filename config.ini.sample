@@ -1,17 +1,20 @@
+# Where API key is optional, requests to that service will still work without a key
+# However, requests may be rate-limited or otherwise limited in scope
+
+[greynoise] # API key optional
+api_key =
+
+[shodan] # API key optional
+api_key =
+
+[threatfox] # API key optional
+api_key =
+
 [abuseipdb]
 api_key =
 
 [emailrep]
 api_key =
 
-[greynoise]
-api_key =
-
-[shodan]
-api_key =
-
 [virustotal]
-api_key =
-
-[threatfox]
 api_key =

@@ -1,16 +1,11 @@
 import requests
-import configparser
-from seclook.find_config import find_config
-
-config_path = find_config()
-config = configparser.ConfigParser()
-config.read(config_path)
+from seclook.config_helper import load_config
 
 base_url = "https://threatfox-api.abuse.ch/api/v1/"
 
 
 def search(value):
-    threatfox_api_key = config["threatfox"]["api_key"]
+    config, threatfox_api_key = load_config("threatfox", key_required=False)
     headers = {
         "Content-Type": "application/json",
         "API-KEY": threatfox_api_key,

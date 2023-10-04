@@ -25,38 +25,30 @@ def main(service, value, export):
     - Use `seclook list` to see a list of available services.
     """
 
-    if not service:
-        raise click.UsageError("Missing service argument.")
-
-    # If service doesn't exist, print an error message
-    if service.lower() not in [
-        "list",
+    services = [
+        "list",  # Keep at top, so services.pop(0) always removes it
         "shodan",
         "virustotal",
         "emailrep",
         "abuseipdb",
         "greynoise",
         "threatfox",
-    ]:
-        raise click.UsageError(f"'{service}'a is not available in seclook.")
+    ]
 
-    # Special service name to list available services
+    if not service:
+        raise click.UsageError("Missing service argument.")
+
+    if service.lower() not in services:
+        raise click.UsageError(f"'{service}' is not available in seclook.")
+
     if service.lower() == "list":
-        services = [
-            "- Shodan",
-            "- VirusTotal",
-            "- Emailrep",
-            "- AbuseIPDB",
-            "- GreyNoise",
-            "- ThreatFox",
-        ]
+        services.pop(0)  # L29
         click.echo("Available services:")
         for service in services:
-            click.echo(service)
+            click.echo("- " + service.capitalize())
         click.echo("Run 'seclook [service] [value]' to perform a lookup.")
         return
 
-    # If value is not provided for a service lookup, print an error message
     if not value:
         raise click.UsageError(f"Missing value argument for '{service}'.")
 
@@ -75,7 +67,6 @@ def main(service, value, export):
     else:
         raise click.UsageError("Unknown service.")
 
-    # If export flag is set, save to a JSON file on the desktop
     if export:
         desktop = os.path.join(os.path.expanduser("~"), "Desktop")
         filename = os.path.join(desktop, f"seclook_{service}_{value}.json")
@@ -86,7 +77,6 @@ def main(service, value, export):
         click.echo(f"Results exported to {filename}")
         return
 
-    # Pretty print the result
     pretty_result = json.dumps(result, indent=4)
     click.echo(pretty_result)
 
