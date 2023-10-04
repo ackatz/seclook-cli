@@ -10,9 +10,10 @@ base_url = "https://threatfox-api.abuse.ch/api/v1/"
 
 
 def search(value):
+    threatfox_api_key = config["threatfox"]["api_key"]
     headers = {
         "Content-Type": "application/json",
-        "API-KEY": config["threatfox"]["api_key"],
+        "API-KEY": threatfox_api_key,
     }
     payload = {"query": "search_ioc", "search_term": value}
     response = requests.post(base_url, headers=headers, json=payload)

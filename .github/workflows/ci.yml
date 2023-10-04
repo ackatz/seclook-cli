@@ -34,6 +34,9 @@ jobs:
         
         echo "[greynoise]" >> config.ini
         echo "api_key = ${{ secrets.greynoise_api_key }}" >> config.ini
+        
+        echo "[threatfox]" >> config.ini
+        echo "api_key = ${{ secrets.threatfox_api_key }}" >> config.ini
 
     - name: Install dependencies
       run: |
