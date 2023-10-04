@@ -20,35 +20,35 @@ def test_shodan_missing_value():
     runner = CliRunner()
     result = runner.invoke(main, ["shodan"])
     assert result.exit_code != 0
-    assert "Missing value argument for service 'shodan'." in result.output
+    assert "Missing value argument for 'shodan'." in result.output
 
 
 def test_virustotal_missing_value():
     runner = CliRunner()
     result = runner.invoke(main, ["virustotal"])
     assert result.exit_code != 0
-    assert "Missing value argument for service 'virustotal'." in result.output
+    assert "Missing value argument for 'virustotal'." in result.output
 
 
 def test_emailrep_missing_value():
     runner = CliRunner()
     result = runner.invoke(main, ["emailrep"])
     assert result.exit_code != 0
-    assert "Missing value argument for service 'emailrep'." in result.output
+    assert "Missing value argument for 'emailrep'." in result.output
 
 
 def test_abuseipdb_missing_value():
     runner = CliRunner()
     result = runner.invoke(main, ["abuseipdb"])
     assert result.exit_code != 0
-    assert "Missing value argument for service 'abuseipdb'." in result.output
+    assert "Missing value argument for 'abuseipdb'." in result.output
 
 
 def test_greynoise_missing_value():
     runner = CliRunner()
     result = runner.invoke(main, ["greynoise"])
     assert result.exit_code != 0
-    assert "Missing value argument for service 'greynoise'." in result.output
+    assert "Missing value argument for 'greynoise'." in result.output
 
 
 def test_unknown_service():
