@@ -1,16 +1,11 @@
 import requests
-import configparser
-from seclook.find_config import find_config
-
-config_path = find_config()
-config = configparser.ConfigParser()
-config.read(config_path)
+from seclook.config_helper import load_config
 
 base_url = "https://api.greynoise.io/v3/community/{}"
 
 
 def search(value):
-    greynoise_api_key = config["greynoise"]["api_key"]
+    config, greynoise_api_key = load_config("greynoise", key_required=False)
     headers = {"Accept": "application/json", "key": greynoise_api_key}
     response = requests.get(base_url.format(value), headers=headers)
     return response.json()

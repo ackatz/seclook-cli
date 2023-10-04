@@ -2,20 +2,21 @@ import os
 
 
 def find_config():
-    # List of directories to look in
     dirs_to_check = [
-        os.getcwd(),  # Current working directory
-        os.path.dirname(os.path.abspath(__file__)),  # Directory of this script
-        os.path.join(
-            os.path.expanduser("~"), ".seclook"
-        ),  # A .seclook directory in the user's home directory
+        os.getcwd(),
+        os.path.dirname(os.path.abspath(__file__)),
+        os.path.join(os.path.expanduser("~"), ".seclook"),
     ]
 
-    for dir in dirs_to_check:
-        config_path = os.path.join(dir, "config.ini")
+    for directory in dirs_to_check:
+        config_path = os.path.join(directory, "config.ini")
         if os.path.exists(config_path):
             return config_path
 
     raise FileNotFoundError(
-        "No config.ini file found in any of the checked directories"
+        "No config.ini file found in any of the checked directories:\n"
+        "({})".format(", ".join(dirs_to_check)) + "\n"
+        "Copy and rename config.ini.sample as config.ini into ~/.seclook/ "
+        "or any of the other directories mentioned above:\n"
+        "https://github.com/ackatz/seclook/blob/main/config.ini.sample"
     )
