@@ -16,6 +16,13 @@ def test_missing_service_and_value():
     assert "Error: Missing service argument." in result.output
 
 
+def test_threatfox_missing_value():
+    runner = CliRunner()
+    result = runner.invoke(main, ["threatfox"])
+    assert result.exit_code != 0
+    assert "Missing value argument for 'threatfox'." in result.output
+
+
 def test_shodan_missing_value():
     runner = CliRunner()
     result = runner.invoke(main, ["shodan"])
@@ -56,6 +63,12 @@ def test_unknown_service():
     result = runner.invoke(main, ["unknown", "value"])
     assert result.exit_code != 0
     assert "is not available in seclook" in result.output
+
+
+def test_threatfox_valid_value():
+    runner = CliRunner()
+    result = runner.invoke(main, ["threatfox", "1.1.1.1"])
+    assert result.exit_code == 0
 
 
 def test_shodan_valid_value():

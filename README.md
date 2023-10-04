@@ -48,6 +48,7 @@ seclook virustotal 1.1.1.1 | grep malicious
 - [x] [Emailrep](https://emailrep.io/)
 - [x] [AbuseIPDB](https://www.abuseipdb.com/)
 - [x] [GreyNoise](https://www.greynoise.io/)
+- [x] [ThreatFox](https://threatfox.abuse.ch/)
 
 You can also view supported services by passing `list` as the service name:
 

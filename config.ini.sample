@@ -12,3 +12,6 @@ api_key =
 
 [virustotal]
 api_key =
+
+[threatfox]
+api_key =

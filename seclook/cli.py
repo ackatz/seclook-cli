@@ -7,6 +7,7 @@ from seclook.lookups import (
     emailrep_lookup,
     abuseipdb_lookup,
     greynoise_lookup,
+    threatfox_lookup,
 )
 import json
 import os
@@ -35,8 +36,9 @@ def main(service, value, export):
         "emailrep",
         "abuseipdb",
         "greynoise",
+        "threatfox",
     ]:
-        raise click.UsageError(f"'{service}' is not available in seclook.")
+        raise click.UsageError(f"'{service}'a is not available in seclook.")
 
     # Special service name to list available services
     if service.lower() == "list":
@@ -46,6 +48,7 @@ def main(service, value, export):
             "- Emailrep",
             "- AbuseIPDB",
             "- GreyNoise",
+            "- ThreatFox",
         ]
         click.echo("Available services:")
         for service in services:
@@ -67,6 +70,8 @@ def main(service, value, export):
         result = abuseipdb_lookup.search(value)
     elif service.lower() == "greynoise":
         result = greynoise_lookup.search(value)
+    elif service.lower() == "threatfox":
+        result = threatfox_lookup.search(value)
     else:
         raise click.UsageError("Unknown service.")
 
