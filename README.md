@@ -1,5 +1,6 @@
 [![Tests](https://github.com/ackatz/seclook/actions/workflows/ci.yml/badge.svg)](https://github.com/ackatz/seclook/actions/workflows/ci.yml)
 [![Release](https://github.com/ackatz/seclook/actions/workflows/cd.yml/badge.svg)](https://github.com/ackatz/seclook/actions/workflows/cd.yml)
+[![Downloads](https://static.pepy.tech/badge/seclook)](https://pepy.tech/project/seclook)
 
 # seclook
 
