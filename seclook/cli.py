@@ -8,6 +8,7 @@ from seclook.lookups import (
     abuseipdb_lookup,
     greynoise_lookup,
     threatfox_lookup,
+    pulsedive_lookup,
 )
 import json
 import os
@@ -33,6 +34,7 @@ def main(service, value, export):
         "abuseipdb",
         "greynoise",
         "threatfox",
+        "pulsedive",
     ]
 
     if not service:
@@ -64,6 +66,8 @@ def main(service, value, export):
         result = greynoise_lookup.search(value)
     elif service.lower() == "threatfox":
         result = threatfox_lookup.search(value)
+    elif service.lower() == "pulsedive":
+        result = pulsedive_lookup.search(value)
     else:
         raise click.UsageError("Unknown service.")
 
