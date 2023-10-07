@@ -16,7 +16,7 @@ def find_config():
     raise FileNotFoundError(
         "No config.ini file found in any of the checked directories:\n"
         "({})".format(", ".join(dirs_to_check)) + "\n"
-        "Copy and rename config.ini.sample as config.ini into ~/.seclook/ "
-        "or any of the other directories mentioned above:\n"
+        "Copy and rename config.ini.sample as config.ini into "
+        "any of the directories mentioned above:\n"
         "https://github.com/ackatz/seclook/blob/main/config.ini.sample"
     )
