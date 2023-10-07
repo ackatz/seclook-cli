@@ -10,6 +10,9 @@ api_key =
 [threatfox] # API key optional
 api_key =
 
+[pulsedive] # API key optional
+api_key = 
+
 [abuseipdb]
 api_key =
 
