@@ -23,6 +23,13 @@ def test_threatfox_missing_value():
     assert "Missing value argument for 'threatfox'." in result.output
 
 
+def test_pulsedive_missing_value():
+    runner = CliRunner()
+    result = runner.invoke(main, ["pulsedive"])
+    assert result.exit_code != 0
+    assert "Missing value argument for 'pulsedive'." in result.output
+
+
 def test_shodan_missing_value():
     runner = CliRunner()
     result = runner.invoke(main, ["shodan"])
@@ -68,6 +75,12 @@ def test_unknown_service():
 def test_threatfox_valid_value():
     runner = CliRunner()
     result = runner.invoke(main, ["threatfox", "1.1.1.1"])
+    assert result.exit_code == 0
+
+
+def test_pulsedive_valid_value():
+    runner = CliRunner()
+    result = runner.invoke(main, ["pulsedive", "1.1.1.1"])
     assert result.exit_code == 0
 
 

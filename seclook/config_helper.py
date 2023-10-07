@@ -39,6 +39,19 @@ def load_config(service_name, key_required=True):
             )
             sys.exit()
     else:
-        api_key = config[service_name].get("api_key", "")
+        try:
+            api_key = config[service_name].get("api_key", "")
+        except KeyError:
+            print(
+                textwrap.dedent(
+                    f"""
+            KeyError: Ensure the following lines are present in config.ini:
+
+            [{service_name}]
+            api_key = <Note: A key is optional to use this API>
+            """
+                )
+            )
+            sys.exit()
 
     return config, api_key

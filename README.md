@@ -24,22 +24,22 @@ Basic usage of `seclook` is as follows:
 seclook [service] [value]
 ```
 
-For example, to look up IP 1.1.1.1 on VirusTotal, you'd run:
+For example, to look up IP 1.1.1.1 on AbuseIPDB, you'd run:
 
 ```bash
-seclook virustotal 1.1.1.1
+seclook abuseipdb 1.1.1.1
 ```
 
-You can pipe the output to `jq` or `fx` for further processing:
+You can pipe the output to `fx` or `jq` for further processing:
 
 ```bash
-seclook virustotal 1.1.1.1 | jq
+seclook emailrep andrew@akatz.org | fx
 ```
 
 You can `grep` the output for known keys to get specific information:
 
 ```bash
-seclook virustotal 1.1.1.1 | grep malicious
+seclook virustotal 44d88612fea8a8f36de82e1278abb02f | grep malicious
 ``` 
 
 ## Options
@@ -54,6 +54,7 @@ seclook virustotal 1.1.1.1 | grep malicious
 - [x] [AbuseIPDB](https://www.abuseipdb.com/)
 - [x] [GreyNoise](https://www.greynoise.io/)
 - [x] [ThreatFox](https://threatfox.abuse.ch/)
+- [x] [Pulsedive](https://pulsedive.com/)
 
 You can also view supported services by passing `list` as the service name:
 
