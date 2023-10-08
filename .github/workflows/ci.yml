@@ -41,6 +41,10 @@ jobs:
         echo "[pulsedive]" >> config.ini
         echo "api_key = ${{ secrets.pulsedive_api_key }}" >> config.ini
 
+    - name: Create Desktop directory
+      run: |
+        mkdir -p ~/Desktop
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
