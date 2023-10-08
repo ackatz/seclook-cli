@@ -21,3 +21,6 @@ api_key =
 
 [virustotal]
 api_key =
+
+[openai]
+api_key =
