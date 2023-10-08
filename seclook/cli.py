@@ -70,8 +70,6 @@ def main(service, value, export, gpt4):
         result = threatfox_lookup.search(value)
     elif service.lower() == "pulsedive":
         result = pulsedive_lookup.search(value)
-    else:
-        raise click.UsageError("Unknown service.")
 
     if export:
         desktop = os.path.join(os.path.expanduser("~"), "Desktop")
