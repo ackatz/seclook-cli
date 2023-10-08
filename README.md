@@ -30,6 +30,12 @@ For example, to look up IP 1.1.1.1 on AbuseIPDB, you'd run:
 seclook abuseipdb 1.1.1.1
 ```
 
+You can send the JSON response to OpenAI GPT-4 for summarization:
+
+```bash
+seclook virustotal 44d88612fea8a8f36de82e1278abb02f --gpt4
+```
+
 You can pipe the output to `fx` or `jq` for further processing:
 
 ```bash
@@ -40,11 +46,12 @@ You can `grep` the output for known keys to get specific information:
 
 ```bash
 seclook virustotal 44d88612fea8a8f36de82e1278abb02f | grep malicious
-``` 
+```
 
 ## Options
 
-`--export` – Use this flag to export the results to a JSON file on your Desktop.
+`--export` – Use this flag to export the results to a JSON file on your Desktop.  
+`--gpt4` – Use this flag to summarize the JSON response from a service in GPT4.
 
 ## Supported services
 

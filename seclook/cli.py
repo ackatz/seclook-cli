@@ -10,6 +10,7 @@ from seclook.lookups import (
     threatfox_lookup,
     pulsedive_lookup,
 )
+from seclook.openai import gpt4_summarize
 import json
 import os
 
@@ -18,7 +19,8 @@ import os
 @click.argument("service", required=False)
 @click.argument("value", required=False)
 @click.option("--export", is_flag=True, help="Export JSON to Desktop")
-def main(service, value, export):
+@click.option("--gpt4", is_flag=True, help="Use GPT-4 to summarize results")
+def main(service, value, export, gpt4):
     """Perform lookups from various security services
 
     - Use `seclook [service] [value]` to perform a lookup.
@@ -80,6 +82,11 @@ def main(service, value, export):
 
         click.echo(f"Results exported to {filename}")
         return
+
+    if gpt4:
+        result = gpt4_summarize.search(service, result)
+        pretty_result = json.dumps(result, indent=4)
+        click.echo(pretty_result)
 
     pretty_result = json.dumps(result, indent=4)
     click.echo(pretty_result)
