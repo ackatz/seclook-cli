@@ -37,6 +37,9 @@ jobs:
         
         echo "[threatfox]" >> config.ini
         echo "api_key = ${{ secrets.threatfox_api_key }}" >> config.ini
+        
+        echo "[pulsedive]" >> config.ini
+        echo "api_key = ${{ secrets.pulsedive_api_key }}" >> config.ini
 
     - name: Install dependencies
       run: |
