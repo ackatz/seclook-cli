@@ -1,15 +1,15 @@
 name: Release
 
 on:
-  workflow_run:
-    workflows: ["CD"]
-    types: [completed]
-
+  push:
+    branches:
+      - main
+    paths:
+      - 'pyproject.toml'
 
 jobs:
   release:
     name: Create Release
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
