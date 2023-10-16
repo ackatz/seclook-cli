@@ -42,14 +42,18 @@ jobs:
         echo "api_key = ${{ secrets.pulsedive_api_key }}" >> config.ini
 
     - name: Create Desktop directory
+      # used for --export test
       run: |
         mkdir -p ~/Desktop
 
-    - name: Install dependencies
+    - name: Install Poetry
       run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        curl -sSL https://install.python-poetry.org | python3 -
 
-    - name: Run Pytest
+    - name: Install dependencies with Poetry
       run: |
-        pytest -vv
+        poetry install
+
+    - name: Run Pytest with Poetry
+      run: |
+        poetry run pytest -vv
