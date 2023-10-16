@@ -14,7 +14,7 @@ You can look up information using commands like `seclook [service] [value]`, whe
 2. Copy [config.ini.sample](https://github.com/ackatz/seclook/blob/main/config.ini.sample) from this directory and place it in `~/.seclook/config.ini`
 3. Open `~/.seclook/config.ini` and add in your own API keys for the services you want to use. 
 
-> Some services (e.g., GreyNoise, ThreatFox) _don't require API keys_, but may be rate-limited more quickly without one or have other limitations.
+> Some services (e.g., GreyNoise, ThreatFox) _don't require API keys_, but may be rate-limited more quickly without one or have other limitations. Others (e.g., YARAify) do not need an API key at all and will not be referenced in the config file.
 
 ## Usage
 
@@ -62,6 +62,7 @@ seclook virustotal 44d88612fea8a8f36de82e1278abb02f | grep malicious
 - [x] [GreyNoise](https://www.greynoise.io/)
 - [x] [ThreatFox](https://threatfox.abuse.ch/)
 - [x] [Pulsedive](https://pulsedive.com/)
+- [x] [Yaraify](https://yaraify.abuse.ch/)
 
 You can also view supported services by passing `list` as the service name:
 
