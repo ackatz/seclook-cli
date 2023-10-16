@@ -8,6 +8,12 @@ def test_threatfox_valid_value():
     assert result.exit_code == 0
 
 
+def test_yaraify_valid_value():
+    runner = CliRunner()
+    result = runner.invoke(main, ["yaraify", "asdf"])
+    assert result.exit_code == 0
+
+
 def test_pulsedive_valid_value():
     runner = CliRunner()
     result = runner.invoke(main, ["pulsedive", "1.1.1.1"])
@@ -28,7 +34,7 @@ def test_virustotal_valid_value():
 
 def test_emailrep_valid_value():
     runner = CliRunner()
-    result = runner.invoke(main, ["emailrep", "andrew@akatz.org"])
+    result = runner.invoke(main, ["emailrep", "example@example.org"])
     assert result.exit_code == 0
 
 

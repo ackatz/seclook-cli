@@ -9,6 +9,13 @@ def test_threatfox_missing_value():
     assert "Missing value argument for 'threatfox'." in result.output
 
 
+def test_yaraify_missing_value():
+    runner = CliRunner()
+    result = runner.invoke(main, ["yaraify"])
+    assert result.exit_code != 0
+    assert "Missing value argument for 'yaraify'." in result.output
+
+
 def test_pulsedive_missing_value():
     runner = CliRunner()
     result = runner.invoke(main, ["pulsedive"])

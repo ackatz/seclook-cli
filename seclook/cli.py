@@ -9,6 +9,7 @@ from seclook.lookups import (
     greynoise_lookup,
     threatfox_lookup,
     pulsedive_lookup,
+    yaraify_lookup,
 )
 from seclook.openai import gpt4_summarize
 import json
@@ -37,6 +38,7 @@ def main(service, value, export, gpt4):
         "greynoise",
         "threatfox",
         "pulsedive",
+        "yaraify",
     ]
 
     if not service:
@@ -70,6 +72,8 @@ def main(service, value, export, gpt4):
         result = threatfox_lookup.search(value)
     elif service.lower() == "pulsedive":
         result = pulsedive_lookup.search(value)
+    elif service.lower() == "yaraify":
+        result = yaraify_lookup.search(value)
 
     if export:
         desktop = os.path.join(os.path.expanduser("~"), "Desktop")
