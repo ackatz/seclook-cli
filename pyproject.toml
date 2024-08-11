@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "seclook"
-version = "0.7.1"
+version = "0.7.2"
 description = "Simple security lookups via CLI"
 authors = ["ackatz <andrew@akatz.org>"]
 license = "MIT"
