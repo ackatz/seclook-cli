@@ -1,13 +1,13 @@
 repos:
   - repo: https://github.com/psf/black
-    rev: '23.9.1'
+    rev: '24.10.0'
     hooks:
       - id: black
   - repo: https://github.com/sirwart/ripsecrets.git
-    rev: 'v0.1.7'
+    rev: 'v0.1.8'
     hooks:
       - id: ripsecrets
   - repo: https://github.com/pycqa/flake8
-    rev: '6.1.0'
+    rev: '7.1.1'
     hooks:
       - id: flake8

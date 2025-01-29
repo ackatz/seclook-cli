@@ -15,28 +15,29 @@ jobs:
       url: https://pypi.org/p/seclook
     permissions:
       id-token: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up Python 3.11
+      - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.11
+          python-version: '3.11'
 
-      - name: Install Poetry
-        run: |
-          curl -sSL https://install.python-poetry.org | python3 -
+      - name: Install uv
+        run: pip install uv
 
-      - name: Install dependencies with Poetry
-        run: |
-          poetry install
+      - name: Install project and dependencies
+        run: uv pip install .
 
-      - name: Build package with Poetry
-        run: |
-          poetry build
+      - name: Install build tool
+        run: uv pip install build
 
-      - name: Publish package distributions to PyPI with Poetry
+      - name: Build package
+        run: python -m build
+
+      - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           user: __token__

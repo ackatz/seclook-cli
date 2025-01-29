@@ -48,3 +48,8 @@ def test_greynoise_valid_value():
     runner = CliRunner()
     result = runner.invoke(main, ["greynoise", "1.1.1.1"])
     assert result.exit_code == 0
+
+def test_quick_valid_value():
+    runner = CliRunner()
+    result = runner.invoke(main, ["quick", "1.1.1.1"])
+    assert result.exit_code == 0
