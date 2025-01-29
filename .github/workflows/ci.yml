@@ -9,12 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.11'
+        uses: actions/checkout@v4
 
       - name: Create config.ini
         run: |
@@ -34,13 +29,10 @@ jobs:
           echo "api_key = ${{ secrets.pulsedive_api_key }}" >> config.ini
 
       - name: Install uv
-        run: pip install uv
+        uses: astral-sh/setup-uv@v5
 
-      - name: Create virtual environment
-        run: uv venv
+      - name: Install the project
+        run: uv sync --all-extras --dev
 
-      - name: Install project and dependencies
-        run: uv pip install '.[dev]'
-
-      - name: Run Pytest
-        run: pytest -vv
+      - name: Run tests
+        run: uv run pytest -vv
