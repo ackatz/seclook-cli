@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-
 import click
-from seclook.lookups import (
+from seclook.lookups import (\
+    quick_lookup,
     shodan_lookup,
     virustotal_lookup,
     emailrep_lookup,
@@ -11,26 +11,21 @@ from seclook.lookups import (
     pulsedive_lookup,
     yaraify_lookup,
 )
-from seclook.openai import gpt4_summarize
 import json
 import os
-
 
 @click.command()
 @click.argument("service", required=False)
 @click.argument("value", required=False)
-@click.option("--export", is_flag=True, help="Export JSON to Desktop")
-@click.option("--gpt4", is_flag=True, help="Use GPT-4 to summarize results")
-def main(service, value, export, gpt4):
+@click.option("--export", is_flag=True, help="Export JSON to current working directory.")
+def main(service, value, export):
     """Perform lookups from various security services
-
     - Use `seclook [service] [value]` to perform a lookup.
-
     - Use `seclook list` to see a list of available services.
     """
-
     services = [
         "list",  # Keep at top, so services.pop(0) always removes it
+        "quick",
         "shodan",
         "virustotal",
         "emailrep",
@@ -38,26 +33,23 @@ def main(service, value, export, gpt4):
         "greynoise",
         "threatfox",
         "pulsedive",
-        "yaraify",
+        "yaraify"
     ]
-
     if not service:
         raise click.UsageError("Missing service argument.")
-
     if service.lower() not in services:
         raise click.UsageError(f"'{service}' is not available in seclook.")
-
     if service.lower() == "list":
-        services.pop(0)  # L29
+        services.pop(0)  # Remove 'list' from the list
         click.echo("Available services:")
         for service in services:
             click.echo("- " + service.capitalize())
         click.echo("Run 'seclook [service] [value]' to perform a lookup.")
         return
-
     if not value:
         raise click.UsageError(f"Missing value argument for '{service}'.")
-
+    if service.lower() == "quick":
+        result = quick_lookup.search(value)
     if service.lower() == "shodan":
         result = shodan_lookup.search(value)
     elif service.lower() == "virustotal":
@@ -76,23 +68,14 @@ def main(service, value, export, gpt4):
         result = yaraify_lookup.search(value)
 
     if export:
-        desktop = os.path.join(os.path.expanduser("~"), "Desktop")
-        filename = os.path.join(desktop, f"seclook_{service}_{value}.json")
-
+        # Use current working directory for exports
+        cwd = os.getcwd()
+        filename = os.path.join(cwd, f"seclook_{service}_{value}.json")
         with open(filename, "w") as outfile:
-            json.dump(result, outfile, indent=4)
-
+            json.dump(result, outfile, indent=2)
         click.echo(f"Results exported to {filename}")
-        return
-
-    if gpt4:
-        result = gpt4_summarize.search(service, result)
-        pretty_result = json.dumps(result, indent=4)
-        click.echo(pretty_result)
-
-    pretty_result = json.dumps(result, indent=4)
-    click.echo(pretty_result)
-
+    else:
+        click.echo(json.dumps(result, indent=2))
 
 if __name__ == "__main__":
     main()

@@ -56,3 +56,9 @@ def test_greynoise_missing_value():
     result = runner.invoke(main, ["greynoise"])
     assert result.exit_code != 0
     assert "Missing value argument for 'greynoise'." in result.output
+
+def test_quick_missing_value():
+    runner = CliRunner()
+    result = runner.invoke(main, ["quick"])
+    assert result.exit_code != 0
+    assert "Missing value argument for 'quick'." in result.output

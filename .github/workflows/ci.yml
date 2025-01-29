@@ -2,58 +2,42 @@ name: CI
 
 on:
   pull_request_target:
-    types:
-      - closed
+    types: [closed]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.11
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
 
-    - name: Create config.ini
-      run: |
-        echo "[shodan]" > config.ini
-        echo "api_key = ${{ secrets.shodan_api_key }}" >> config.ini
-        
-        echo "[virustotal]" >> config.ini
-        echo "api_key = ${{ secrets.virustotal_api_key }}" >> config.ini
-        
-        echo "[emailrep]" >> config.ini
-        echo "api_key = ${{ secrets.emailrep_api_key }}" >> config.ini
-        
-        echo "[abuseipdb]" >> config.ini
-        echo "api_key = ${{ secrets.abuseipdb_api_key }}" >> config.ini
-        
-        echo "[greynoise]" >> config.ini
-        echo "api_key = ${{ secrets.greynoise_api_key }}" >> config.ini
-        
-        echo "[threatfox]" >> config.ini
-        echo "api_key = ${{ secrets.threatfox_api_key }}" >> config.ini
-        
-        echo "[pulsedive]" >> config.ini
-        echo "api_key = ${{ secrets.pulsedive_api_key }}" >> config.ini
+      - name: Create config.ini
+        run: |
+          echo "[shodan]" > config.ini
+          echo "api_key = ${{ secrets.shodan_api_key }}" >> config.ini
+          echo "[virustotal]" >> config.ini
+          echo "api_key = ${{ secrets.virustotal_api_key }}" >> config.ini
+          echo "[emailrep]" >> config.ini
+          echo "api_key = ${{ secrets.emailrep_api_key }}" >> config.ini
+          echo "[abuseipdb]" >> config.ini
+          echo "api_key = ${{ secrets.abuseipdb_api_key }}" >> config.ini
+          echo "[greynoise]" >> config.ini
+          echo "api_key = ${{ secrets.greynoise_api_key }}" >> config.ini
+          echo "[threatfox]" >> config.ini
+          echo "api_key = ${{ secrets.threatfox_api_key }}" >> config.ini
+          echo "[pulsedive]" >> config.ini
+          echo "api_key = ${{ secrets.pulsedive_api_key }}" >> config.ini
 
-    - name: Create Desktop directory
-      # used for --export test
-      run: |
-        mkdir -p ~/Desktop
+      - name: Install uv
+        run: pip install uv
 
-    - name: Install Poetry
-      run: |
-        curl -sSL https://install.python-poetry.org | python3 -
+      - name: Install project and dependencies
+        run: uv pip install '.[dev]'
 
-    - name: Install dependencies with Poetry
-      run: |
-        poetry install
-
-    - name: Run Pytest with Poetry
-      run: |
-        poetry run pytest -vv
+      - name: Run Pytest
+        run: pytest -vv
